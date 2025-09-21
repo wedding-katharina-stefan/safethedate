@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Save the Date</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Dancing+Script:wght@500&display=swap');
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  font-family: 'Playfair Display', serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  width: 90%;
+  max-width: 420px;
+  padding: 6%;
+  text-align: center;
+  border-radius: 12px;
+  background-image: url('IMG_7783.jpg'); 
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  position: relative;
+  overflow: hidden;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 80vh;
+  animation: fadeIn 1.5s ease forwards;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.1));
+  z-index: 0;
+  border-radius: 12px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.save, .the, .date, .names, .divider, .footer, .countdown, .calendar-button {
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 0 8px rgba(255,255,255,0.8);
+}
+
+.save { font-size: clamp(24px,12vw,80px); font-weight: 400; margin-top: 0; }
+.the { font-family: 'Dancing Script', cursive; font-size: clamp(18px,7vw,50px); margin: -1vw 0; }
+.date { font-size: clamp(24px,12vw,80px); font-weight: 400; margin-bottom: 4vw; }
+.names {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(24px,12vw,80px);
+  margin: 4vw 0;
+  display: inline-block;
+  border-right: .15em solid #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: blinkCursor 1s step-end infinite;
+}
+
+@keyframes blinkCursor {
+  0%, 50% { border-color: #ffffff; }
+  51%, 100% { border-color: transparent; }
+}
+
+.divider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 4vw 0;
+  font-size: 5vw;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+.divider div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  animation: floatUp 2s ease-in-out infinite alternate;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-6px); }
+}
+
+.number {
+  font-size: 20vw;
+  font-weight: 700;
+  margin: 0 1vw;
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  animation: bounce 2s infinite;
+  text-shadow: 0 0 10px rgba(255,255,255,0.7);
+}
+
+@keyframes bounce {
+  0%,20%,50%,80%,100% { transform: translateY(0); }
+  40% { transform: translateY(-12px); }
+  60% { transform: translateY(-6px); }
+}
+
+.number::after {
+  content: "✨"; 
+  position: absolute;
+  top: -1.5em;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.number:hover {
+  transform: scale(1.2) rotate(-5deg);
+  text-shadow: 0 0 18px rgba(255,255,255,0.9);
+}
+
+.number:hover::after {
+  transform: translateX(-50%) scale(1);
+  opacity: 1;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 0.7vw;
+  margin-top: 3vw;
+  flex-wrap: wrap;
+  font-size: 5vw;
+}
+
+.countdown-item {
+  background: rgba(255,255,255,0.2);
+  border: 1px solid #ffffff;
+  border-radius: 10px;
+  padding: 0.7vw 1.2vw;
+  min-width: 50px;
+  font-size: 8vw;
+  font-family: 'Dancing Script', cursive;
+  color: #ffffff;
+}
+
+.countdown-label {
+  font-size: 5vw;
+  display: block;
+  margin-top: 0.3vw;
+  color: #ffffff;
+}
+
+.footer { font-size: 4vw; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 3vw; }
+
+.calendar-button {
+  padding: 0.25em 0.6em;   /* kleiner Innenabstand */
+  font-size: 5vw;          /* kleinere Schrift */
+  font-family: 'Dancing Script', cursive;
+  color: #ffffff;
+  background: rgba(255,255,255,0.2);
+  border: 1px solid #ffffff;
+  border-radius: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  margin-top: 3vw;
+  text-shadow: 0 0 8px rgba(255,255,255,0.8);
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.calendar-button:hover {
+  transform: scale(1.05);
+  background: rgba(255,255,255,0.35);
+  box-shadow: 0 4px 12px rgba(255,255,255,0.6);
+}
+
+#easterEgg {
+  display:none;
+  position:fixed;
+  top:0;left:0;width:100%;height:100%;
+  background:rgba(0,0,0,0.7);
+  color:#fff;z-index:999;
+  justify-content:center;align-items:center;
+  font-family:'Playfair Display',serif;
+}
+#easterEgg .inner {
+  background:#333;
+  padding:20px;
+  border-radius:10px;
+  text-align:center;
+  max-width:300px;
+}
+#easterEgg input {
+  width:100%;
+  padding:5px;
+  font-size: 16px;
+}
+#easterEgg button {
+  margin-top: 10px;
+  padding: 6px 12px;
+  font-size:16px;
+  cursor: pointer;
+}
+#closeEasterEgg {
+  background: #555;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  margin-top: 6px;
+}
+#closeEasterEgg:hover {
+  background: #777;
+}
+#result { margin-top:10px; font-size:0.9em; }
+#secretImage { display:none; margin-top:10px; max-width:100%; border-radius:8px; }
+
+</style>
+</head>
+<body>
+
+<div class="card" id="card">
+  <div class="save">save</div>
+  <div class="the">the</div>
+  <div class="date">date</div>
+  <div class="names" id="typed"></div>
+
+  <div class="divider">
+    <div>Donnerstag</div>
+    <div>
+      <span class="number">27</span><br>
+      <span>August 2026</span>
+    </div>
+  </div>
+
+  <div class="countdown" id="countdown"></div>
+
+  <!-- Kalender Button -->
+  <a id="calendarBtn" class="calendar-button" href="Hochzeit_Katharina_Stefan.ics" target="_blank">Zum Kalender hinzufügen</a>
+
+  <div class="footer">Die offizielle Einladung folgt</div>
+</div>
+
+<!-- Easter Egg Popup -->
+<div id="easterEgg">
+  <div class="inner">
+    <h3>Geheimes Rätsel</h3>
+    <p>Wie heißt der Ort, an dem wir uns verlobt haben?</p>
+    <input id="answer" type="text" placeholder="Antwort eingeben">
+    <button id="checkAnswer">Prüfen</button>
+    <button id="closeEasterEgg">Zurück</button>
+    <div id="result"></div>
+    <img id="secretImage" src="unserbild.jpg" alt="Unser Bild">
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  // Typing Effekt
+  const text = "Katharina & Stefan";
+  const typed = document.getElementById("typed");
+  let i = 0;
+  function typeWriter() {
+    if (i < text.length) {
+      typed.textContent += text.charAt(i);
+      i++;
+      setTimeout(typeWriter, 150 + Math.random()*100);
+    } else {
+      typed.style.borderRight = 'none';
+    }
+  }
+  typeWriter();
+
+  // Countdown
+  const countdownEl = document.getElementById('countdown');
+  const eventDate = new Date("August 27, 2026 15:00:00").getTime();
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = eventDate - now;
+
+    if(distance < 0) {
+      countdownEl.innerHTML = "<div>Es ist soweit!</div>";
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    countdownEl.innerHTML = `
+      <div class="countdown-item">${days}<span class="countdown-label">Tage</span></div>
+      <div class="countdown-item">${hours}<span class="countdown-label">h</span></div>
+      <div class="countdown-item">${minutes}<span class="countdown-label">m</span></div>
+      <div class="countdown-item">${seconds}<span class="countdown-label">s</span></div>
+    `;
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // Easter Egg Logik
+  const dateNumber = document.querySelector('.number');
+  dateNumber.addEventListener('click', () => {
+    document.getElementById('easterEgg').style.display='flex';
+  });
+
+  document.getElementById('checkAnswer').addEventListener('click', () => {
+    const answer = document.getElementById('answer').value.trim().toLowerCase();
+    const normalizedAnswer = answer.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    if(["norwegen","tromso","tromsø"].includes(normalizedAnswer)) {
+      document.getElementById('result').textContent = 'Richtig! 🎉';
+      document.getElementById('secretImage').style.display='block';
+    } else {
+      document.getElementById('result').textContent = 'Leider falsch, probier es nochmal :)';
+      document.getElementById('secretImage').style.display='none';
+    }
+  });
+
+  // Zurück-Button
+  document.getElementById('closeEasterEgg').addEventListener('click', () => {
+    document.getElementById('easterEgg').style.display = 'none';
+    document.getElementById('answer').value = '';
+    document.getElementById('result').textContent = '';
+    document.getElementById('secretImage').style.display='none';
+  });
+});
+</script>
+
+</body>
+</html>
